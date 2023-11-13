@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<h1>Форма</h1>
+<form action="" method="post">
+    <label>
+        Страна: <input type="text" name="country" placeholder="Страна">
+    </label>
+
+    <br>
+
+    <label>
+        Производитель: <input type="text" name="manufacturer" placeholder="Производитель">
+    </label>
+
+    <br>
+    <hr>
+
+    <label>
+        Описание: <textarea name="description"></textarea>
+    </label>
+
+    <hr>
+    <br>
+
+    <label>
+        Гражданские <input type="checkbox" name="civil">
+    </label>
+
+    <label>
+        Военные <input type="checkbox" name="military">
+    </label>
+
+    <label>
+        Сельскохозяйственные <input type="checkbox" name="Agricultural">
+    </label>
+
+    <hr>
+    <br>
+
+    <label>
+        <input type="radio" value="car" name="vehicles">Машина
+        <input type="radio" value="motorbike" name="vehicles">Мотоцикл
+        <input type="radio" value="bus" name="vehicles">Автобус
+    </label>
+
+    <br>
+    <hr>
+
+    <label>
+        <select name="selectCarBrends" multiple="multiple">
+            <option value="Mazda">Mazda</option>
+            <option value="BMW">BMW</option>
+            <option value="Honda">Honda</option>
+            <option value="Mercedes">Mercedes</option>
+        </select>
+    </label>
+
+    <br>
+    <hr>
+
+    <label>
+        <select name="selectBodyType">
+            <option value="sedan">Седан</option>
+            <option value="hatchback">Хетчбэк</option>
+            <option value="stationWagon">Универсал</option>
+            <option value="coupe">Купе</option>
+        </select>
+    </label>
+
+    <br>
+    <hr>
+
+    <a href="page2.html">Страница 2</a>
+
+    <br>
+    <hr>
+
+    <button type="submit">Отправить</button>
+</form>
+</body>
+</html>
