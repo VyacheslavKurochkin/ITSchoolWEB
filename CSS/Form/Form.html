@@ -1,0 +1,133 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <link rel="stylesheet" href="/CSS/normalize.css">
+    <title>Отправить заявку</title>
+    <style>
+
+        .header {
+            padding: 20px 0 4px 20px;
+        }
+
+        .header h2 {
+            font-size: 28px;
+            font-weight: normal;
+            font-family: 'Arial Narrow', sans-serif;
+            color: #5E6166;
+            margin: 0;
+            padding: 0;
+        }
+
+        .page-default {
+            background-color: #FEEED5;
+            color: #63594E;
+            font-family: 'Arial Narrow', sans-serif;
+            font-size: 15px;
+            max-width: 750px;
+        }
+
+        .form-block {
+            padding-left: 20px;
+            padding-right: 20px;
+            padding-bottom: 14px;
+        }
+
+        .form-item {
+            padding-top: 16px;
+            padding-left: 0;
+            display: table;
+            width: 100%;
+            overflow: hidden;
+        }
+
+        .form-item input {
+            text-align: left;
+            padding: 8px 12px;
+            border: none;
+            display: table-cell;
+            width: 100%;
+        }
+
+        .form-item textarea {
+            border: none;
+            display: table-cell;
+            width: 100%;
+            height: 108px;
+        }
+
+        .form-item-caption {
+            padding-bottom: 7px;
+            font-weight: bold;
+        }
+
+        .form-button {
+            text-align: right;
+
+        }
+
+        .form-button button {
+            background-color: #378EB2;
+            border: none;
+            color: white;
+            font-weight: bold;
+            padding: 7px 8px;
+        }
+
+        .form-footer {
+            padding-top: 13px;
+            padding-bottom: 12px;
+        }
+    </style>
+</head>
+
+<body>
+<div class="header">
+    <h2>Отправить заявку</h2>
+</div>
+<div class="page-default">
+    <div class="form-block">
+        <form action="" method="post">
+            <div class="form-item">
+                <div class="form-item-caption">
+                    <label for="clientName">Ваше имя</label>
+                </div>
+                <input type="text" id="clientName" name="name" placeholder="Ваше имя*">
+
+            </div>
+
+            <div class="form-item">
+                <div class="form-item-caption">
+                    <label for="clientPhone">Ваш номер телефона</label>
+                </div>
+                <input type="text" id="clientPhone" name="phone" placeholder="Ваш номер телефона*">
+            </div>
+
+            <div class="form-item">
+                <div class="form-item-caption">
+                    <label for="clientContacts">Ваш email или VK</label>
+                </div>
+                <input type="text" id="clientContacts" name="contacts" placeholder="Ваш email или VK*">
+
+            </div>
+
+            <div class="form-item">
+                <div class="form-item-caption">
+                    <label for="clientComments">Комментарий</label>
+                </div>
+                <textarea id="clientComments" name="comments" placeholder="Комментарий (не обязательно)"></textarea>
+
+            </div>
+            <div class="form-footer">
+                <label>
+                    Заполните и отправьте форму, и мы перезвоним Вам по указанному номеру
+                </label>
+            </div>
+            <div class="form-button">
+                <button type="submit">Отправить заявку</button>
+            </div>
+        </form>
+    </div>
+</div>
+</body>
+</html>
