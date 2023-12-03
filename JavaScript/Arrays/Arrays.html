@@ -18,11 +18,11 @@
             }
 
             function getEvenElementsSum(inputArray) {
-                return inputArray.reduce((sum, item) => item % 2 == 0 ? sum + item : sum, 0);
+                return inputArray.reduce((sum, item) => item % 2 === 0 ? sum + item : sum, 0);
             }
 
             function getSquaresEvenNumbers(inputArray) {
-                return inputArray.filter((item) => item % 2 == 0).map(item => item * item);
+                return inputArray.filter((item) => item % 2 === 0).map(item => item * item);
             }
 
             let array = [1, 5, 7, 9, 10, 2, 6];
