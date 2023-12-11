@@ -17,7 +17,7 @@
         return resultCountries;
     }
 
-    let countries = [
+    const countries = [
         {
             name: "Италия",
             cities: [{name: "Рим", population: 1935609},
