@@ -3,56 +3,8 @@
 <head>
     <meta charset="UTF-8">
     <title>Arrays</title>
-    <script>
-        (function () {
-            function arraySort(inputArray) {
-                inputArray.sort((first, second) => second - first);
-            }
-
-            function getFirstElements(inputArray, countElements) {
-                return inputArray.slice(0, countElements);
-            }
-
-            function getLastElements(inputArray, countElements) {
-                return inputArray.slice(-countElements);
-            }
-
-            function getEvenElementsSum(inputArray) {
-                return inputArray.reduce((sum, item) => item % 2 === 0 ? sum + item : sum, 0);
-            }
-
-            function getSquaresEvenNumbers(inputArray) {
-                return inputArray.filter((item) => item % 2 === 0).map(item => item * item);
-            }
-
-            let array = [1, 5, 7, 9, 10, 2, 6];
-
-            console.log("Массив чисел:");
-            console.log(array);
-
-            arraySort(array);
-            console.log("Отсортированный массив:");
-            console.log(array);
-
-            console.log("Первые 5 элементов:");
-            console.log(getFirstElements(array, 5));
-
-            console.log("Последние 5 элементов:");
-            console.log(getLastElements(array, 5));
-
-            console.log("Сумма четных элементов массива: " + getEvenElementsSum(array));
-
-            let numbers = new Array(100).fill(0).map((item, i) => i + 1);
-            console.log("Массив чисел:");
-            console.log(numbers);
-
-            console.log("Список квадратов четных чисел от 1 до 100:");
-            console.log(getSquaresEvenNumbers(numbers));
-        })();
-
-    </script>
+    <script defer src="script.js"></script>
 </head>
 <body>
-
 </body>
 </html>
