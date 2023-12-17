@@ -1,0 +1,65 @@
+.temperature-input-area {
+    width: 600px;
+    height: 70px;
+    vertical-align: top;
+    background-color: #FEEED5;
+}
+
+h1 {
+    margin-left: 60px;
+}
+
+.temperature-input-form > * {
+    display: inline-block;
+    vertical-align: top;
+    margin-left: 10px;
+    margin-top: 10px;
+}
+
+.temperature-caption {
+    font-weight: bold;
+}
+
+.input-block input {
+    width: 200px;
+    height: 20px;
+    margin-left: 10px;
+}
+
+#convert-button {
+    background-color: #b8860b;
+    width: 120px;
+    height: 25px;
+    border: none;
+    font-weight: bold;
+}
+
+button {
+    cursor: pointer;
+}
+
+.conversion-result {
+    width: 600px;
+    background-color: #FEEED5;
+}
+
+.degree-result > * {
+    margin-left: 10px;
+    margin-top: 5px;
+    margin-bottom: 10px;
+}
+
+.error-message {
+    color: #f00;
+    font-weight: bold;
+    font-size: 18px;
+    display: none;
+}
+
+.invalid {
+    border-color: #f00;
+}
+
+.invalid + .error-message {
+    display: block;
+}
