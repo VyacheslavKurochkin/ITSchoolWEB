@@ -1,0 +1,58 @@
+.page-default {
+    background-color: #FEEED5;
+    color: #656664;
+    font-family: 'Arial Narrow', sans-serif;
+    font-size: 15px;
+    max-width: 750px;
+}
+
+.page-default h1{
+    font-size: 28px;
+    font-weight: normal;
+    line-height: 1.11;
+    margin: 0;
+    padding-top: 10px;
+    padding-left: 17px;
+}
+
+.header {
+    font-size: 28px;
+}
+
+.info-block {
+    margin: 0;
+    padding: 4px 15px 10px 17px;
+}
+
+.highlight-header {
+    padding-top: 3px;
+    padding-bottom: 3px;
+    font-weight: lighter;
+}
+
+.highlight-item {
+    padding-top: 9px;
+    padding-bottom: 0;
+}
+
+.highlight-blue-text {
+    font-weight: bold;
+    font-size: 17px;
+    color: #4F8B9E;
+}
+
+.highlight-text {
+    font-size: 17px;
+}
+
+.crossed-text {
+    text-decoration: line-through;
+}
+
+.description p {
+    text-align: justify;
+    text-indent: 14px;
+    line-height: 1.495;
+    padding-top: 8px;
+    margin: 0;
+}
