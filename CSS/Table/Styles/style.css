@@ -1,0 +1,59 @@
+@font-face {
+    font-family: "SourceSansPro";
+    src: url("/CSS/Table/Fonts/SourceSansPro/SourceSansPro-Regular.woff") format("woff");
+}
+
+.table-body {
+    border-collapse: collapse;
+    border: 1px solid white;
+    font-family: 'SourceSansPro', sans-serif;
+    font-size: 21px;
+    font-weight: 300;
+    letter-spacing: 1px;
+}
+
+.table-body th {
+    background-color: #3598DB;
+    border-top: 1px solid #EEE;
+    border-left: 1px solid #EEE;
+    border-right: 1px solid #EEE;
+    color: white;
+    font-weight: normal;
+    text-align: left;
+    padding: 16px 10px 9px 10px;
+}
+
+.table-body td:nth-child(1) {
+    width: 154px;
+}
+
+.table-body td:nth-child(2) {
+    width: 153px;
+}
+
+.table-body td:nth-child(3) {
+    width: 287px;
+}
+
+.table-body td:nth-child(4) {
+    width: 178px;
+}
+
+.table-body td {
+    font-weight: bolder;
+    border-right: 1px solid #CDCDCD;
+    border-top: 1px solid #CDCDCD;
+    padding: 15px 10px 12px 10px;
+}
+
+.table-body td:last-child {
+    border-right: 1px solid #EEE;
+}
+
+.table-body tr:nth-child(odd) {
+    background: #EEE;
+}
+
+.table-body tr:nth-child(even) {
+    background: #FFF;
+}
