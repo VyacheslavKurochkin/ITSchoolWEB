@@ -1,22 +1,23 @@
 (function () {
-    function sortNumbersArrayByDescending(inputArray) {
-        inputArray.sort((number1, number2) => number2 - number1);
+    function sortNumbersArrayByDescending(numbersArray) {
+        numbersArray.sort((number1, number2) => number2 - number1);
     }
 
-    function getFirstElements(inputArray, elementsCount) {
-        return inputArray.slice(0, elementsCount);
+    function getFirstElements(array, elementsCount) {
+        return array.slice(0, elementsCount);
     }
 
     function getLastElements(inputArray, elementsCount) {
         return inputArray.slice(-elementsCount);
     }
 
-    function getEvenNumbersSum(inputArray) {
-        return inputArray.reduce((sum, number) => number % 2 === 0 ? sum + number : sum, 0);
+    function getEvenNumbersSum(numbersArray) {
+        return numbersArray.reduce((sum, number) => number % 2 === 0 ? sum + number : sum, 0);
     }
 
-    function getSquaresEvenNumbers(inputArray) {
-        return inputArray.filter(number => number % 2 === 0).map(number => number * number);
+    function getEvenNumbersSquares(numbersArray) {
+        return numbersArray.filter(number => number % 2 === 0)
+            .map(number => number * number);
     }
 
     const numbers1 = [1, 5, 7, 9, 10, 2, 6];
@@ -46,5 +47,5 @@
     console.log(numbers2);
 
     console.log("Список квадратов четных чисел от 1 до 100:");
-    console.log(getSquaresEvenNumbers(numbers2));
+    console.log(getEvenNumbersSquares(numbers2));
 })();
