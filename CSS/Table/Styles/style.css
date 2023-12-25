@@ -3,7 +3,7 @@
     src: url("/CSS/Table/Fonts/SourceSansPro/SourceSansPro-Regular.woff") format("woff");
 }
 
-.table-body {
+.members-table {
     border-collapse: collapse;
     border: 1px solid #EEE;
     font-family: 'SourceSansPro', sans-serif;
@@ -12,48 +12,53 @@
     letter-spacing: 1px;
 }
 
-.table-body th {
+.members-table th {
     background-color: #3598DB;
-    border-top: 1px solid #EEE;
-    border-left: 1px solid #EEE;
-    border-right: 1px solid #EEE;
+    border: 1px solid #EEE;
     color: #EEE;
     font-weight: normal;
     text-align: left;
-    padding: 16px 10px 9px 10px;
+    padding: 16px 10px 9px;
 }
 
-.table-body td:nth-child(1) {
+.firstname-column {
     width: 154px;
 }
 
-.table-body td:nth-child(2) {
+.lastname-column {
     width: 153px;
 }
 
-.table-body td:nth-child(3) {
+.job-column {
     width: 287px;
 }
 
-.table-body td:nth-child(4) {
+.twitter-column {
     width: 178px;
 }
 
-.table-body td {
+.members-table td {
     font-weight: bolder;
-    border-right: 1px solid #CDCDCD;
-    border-top: 1px solid #CDCDCD;
-    padding: 15px 10px 12px 10px;
+    border: 1px solid #CDCDCD;
+    padding: 15px 10px 12px;
 }
 
-.table-body td:last-child {
+.members-table td:last-child {
     border-right: 1px solid #EEE;
 }
 
-.table-body tr:nth-child(odd) {
+.members-table td:first-child {
+    border-left-color: #EEE;
+}
+
+.members-table tr:last-child td {
+    border-bottom-color: #EEE;
+}
+
+.members-table tr:nth-child(odd) {
     background: #EEE;
 }
 
-.table-body tr:nth-child(even) {
+.members-table tr:nth-child(even) {
     background: #FFF;
 }
