@@ -1,7 +1,12 @@
+@font-face {
+    font-family: "Arial";
+    src: url("../Fonts/ArialRegular.ttf") format("truetype");
+}
+
 .page-default {
     background-color: #FEEED5;
     color: #656664;
-    font-family: 'Arial Narrow', sans-serif;
+    font-family: 'Arial', sans-serif;
     font-size: 15px;
     max-width: 750px;
 }
