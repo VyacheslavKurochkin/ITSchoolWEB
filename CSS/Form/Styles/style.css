@@ -1,0 +1,93 @@
+@font-face {
+    font-family: "Arial";
+    src: url("../Fonts/ArialRegular.ttf") format("truetype");
+}
+
+.header {
+    padding: 20px 0 4px 20px;
+    background-color: #FFF;
+}
+
+.header h1 {
+    font-size: 28px;
+    font-weight: normal;
+    font-family: 'Arial', sans-serif;
+    color: #5E6166;
+    margin: 0;
+    padding: 0;
+}
+
+.page-default {
+    background-color: #FEEED5;
+    color: #63594E;
+    font-family: 'Arial Narrow', sans-serif;
+    font-size: 15px;
+    letter-spacing: normal;
+    max-width: 750px;
+}
+
+*::placeholder {
+    color: #929CA5;
+}
+
+.form-block {
+    padding-left: 20px;
+    padding-right: 20px;
+    padding-bottom: 12px;
+}
+
+.form-item {
+    padding-top: 15px;
+    padding-left: 0;
+    width: 100%;
+    overflow: hidden;
+}
+
+.form-item-caption {
+    padding-bottom: 7px;
+    font-weight: bold;
+    color: #707168;
+}
+
+.form-item input {
+    text-align: left;
+    height: 34px;
+    padding: 8px 12px;
+    border-color: #FFF;
+    border-style: solid;
+    box-sizing: border-box;
+    width: 100%;
+}
+
+.form-item textarea {
+    border: none;
+    padding-left: 12px;
+    padding-top: 10px;
+    box-sizing: border-box;
+    width: 100%;
+    height: 115px;
+    resize: vertical;
+}
+
+.form-button {
+    text-align: right;
+}
+
+.form-button:hover button {
+    background-color: #1F5065;
+}
+
+.form-button button {
+    background-color: #378EB2;
+    border: none;
+    color: #FFF;
+    font-weight: bold;
+    padding: 7px 8px;
+    cursor: pointer;
+}
+
+.form-footer {
+    padding-top: 12px;
+    padding-bottom: 12px;
+    color: #828178;
+}
