@@ -1,20 +1,21 @@
 (function () {
     function getCountriesWithMaxCitiesAmount(countries) {
-        const maxCitiesAmount = countries.reduce((max, country) => {
-            return Math.max(max, country.cities.length);
+        const maxCitiesAmount = countries.reduce((maxCitiesAmount, country) => {
+            return Math.max(maxCitiesAmount, country.cities.length);
         }, 0);
 
         return countries.filter(country => country.cities.length === maxCitiesAmount);
     }
 
-    function getCountriesConsolidatedObject(countriesArray) {
-        const resultObject = {};
+    function getCountriesPopulationObject(countries) {
+        const CountriesPopulationObject = {};
 
-        countriesArray.forEach(item => {
-            resultObject[item.name] = item.cities.reduce((sum, city) => sum + city.population, 0);
+        countries.forEach(country => {
+            CountriesPopulationObject[country.name] = country.cities
+                .reduce((sumPopulation, city) => sumPopulation + city.population, 0);
         });
 
-        return resultObject;
+        return CountriesPopulationObject;
     }
 
     const countries = [
@@ -64,5 +65,5 @@
     console.log(getCountriesWithMaxCitiesAmount(countries));
 
     console.log("Новый объект ключ - Страна, значение - численность:");
-    console.log(getCountriesConsolidatedObject(countries));
+    console.log(getCountriesPopulationObject(countries));
 })();
