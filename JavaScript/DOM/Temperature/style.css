@@ -1,12 +1,13 @@
 .temperature-input-area {
-    width: 600px;
-    height: 70px;
+    width: 550px;
+    height: 140px;
     vertical-align: top;
     background-color: #FEEED5;
+    margin: 0 auto;
 }
 
-h1 {
-    margin-left: 60px;
+.header h1 {
+    text-align: center;
 }
 
 .temperature-input-form > * {
@@ -21,43 +22,61 @@ h1 {
 }
 
 .input-block input {
-    width: 200px;
+    width: 180px;
     height: 20px;
-    margin-left: 10px;
+    margin-left: 46px;
 }
 
 #convert-button {
-    background-color: #b8860b;
-    width: 120px;
+    background-color: #FF7316;
+    width: 130px;
     height: 25px;
     border: none;
     font-weight: bold;
 }
 
-button {
+#convert-button {
     cursor: pointer;
 }
 
+#convert-button:hover {
+    background-color: #FFB20D;
+}
+
 .conversion-result {
-    width: 600px;
+    width: 550px;
     background-color: #FEEED5;
+    margin: 0 auto;
+}
+
+.conversion-result input {
+    width: 180px;
 }
 
 .degree-result > * {
     margin-left: 10px;
     margin-top: 5px;
     margin-bottom: 10px;
+    display: inline-block;
+}
+
+.kelvin-result-caption-splitter {
+    width: 17px;
+}
+
+.fahrenheit-result-caption-splitter {
+    width: 2px;
 }
 
 .error-message {
-    color: #f00;
+    color: #F00;
     font-weight: bold;
     font-size: 18px;
     display: none;
 }
 
 .invalid {
-    border-color: #f00;
+    border-color: #F00;
 }
 
 .invalid + .error-message {

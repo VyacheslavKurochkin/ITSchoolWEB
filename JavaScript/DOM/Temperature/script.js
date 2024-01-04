@@ -1,45 +1,45 @@
 document.addEventListener("DOMContentLoaded", function () {
-    const conversionForm = document.getElementById("input-temperature-form");
-    const inputTemperature = document.getElementById("input-temperature");
+    const conversionForm = document.querySelector(".temperature-input-form");
+    const celsiusInput = document.querySelector(".celsius-input");
+    const errorMessage = document.querySelector(".error-message");
 
-    const waterFreezingDegreesFahrenheit = 32;
-    const celsiusToFahrenheitRate = 1.8;
-    const absoluteZeroDegreesCelsius = -273.15;
+    const fahrenheitResult = document.querySelector(".fahrenheit-result-input");
+    const kelvinResult = document.querySelector(".kelvin-result-input");
 
     function getFahrenheit(degreesCelsius) {
-        return waterFreezingDegreesFahrenheit + degreesCelsius * celsiusToFahrenheitRate;
+        return 32 + degreesCelsius * 1.8;
     }
 
     function getKelvin(degreesCelsius) {
-        return absoluteZeroDegreesCelsius + degreesCelsius;
+        return degreesCelsius - 273.15;
     }
 
-    inputTemperature.addEventListener("keypress", function () {
-        document.getElementById("Fahrenheit").value = "";
-        document.getElementById("Kelvin").value = "";
+    celsiusInput.addEventListener("keypress", function () {
+        fahrenheitResult.value = "";
+        kelvinResult.value = "";
     });
 
     conversionForm.addEventListener("submit", function (e) {
         e.preventDefault();
 
-        let degreesCelsius = inputTemperature.value.trim();
-        inputTemperature.classList.remove("invalid");
+        const degreesCelsius = celsiusInput.value.trim();
+        celsiusInput.classList.remove("invalid");
 
         if (degreesCelsius.length === 0) {
-            document.querySelector(".error-message").innerHTML = `<span>Необходимо указать значение температуры</span>`;
-            inputTemperature.classList.add("invalid");
+            errorMessage.innerHTML = 'Необходимо указать значение температуры';
+            celsiusInput.classList.add("invalid");
 
             return;
         }
 
-        if (String(parseFloat(degreesCelsius)) !== String(degreesCelsius)) {
-            document.querySelector(".error-message").innerHTML = `<span>Вводить можно только числа</span>`;
-            inputTemperature.classList.add("invalid");
+        if (isNaN(Number(degreesCelsius))) {
+            errorMessage.innerHTML = 'Вводить можно только числа';
+            celsiusInput.classList.add("invalid");
 
             return;
         }
 
-        document.getElementById("Fahrenheit").value = getFahrenheit(degreesCelsius);
-        document.getElementById("Kelvin").value = getKelvin(degreesCelsius);
+        fahrenheitResult.value = getFahrenheit(degreesCelsius);
+        kelvinResult.value = getKelvin(degreesCelsius);
     });
 });
