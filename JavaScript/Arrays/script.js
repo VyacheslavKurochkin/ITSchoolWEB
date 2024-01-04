@@ -7,8 +7,8 @@
         return array.slice(0, elementsCount);
     }
 
-    function getLastElements(inputArray, elementsCount) {
-        return inputArray.slice(-elementsCount);
+    function getLastElements(array, elementsCount) {
+        return array.slice(-elementsCount);
     }
 
     function getEvenNumbersSum(numbersArray) {
