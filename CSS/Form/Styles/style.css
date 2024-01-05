@@ -1,17 +1,12 @@
-@font-face {
-    font-family: "Arial";
-    src: url("../Fonts/ArialRegular.ttf") format("truetype");
-}
-
 .header {
-    padding: 20px 0 4px 20px;
+    padding: 20px 20px 4px;
     background-color: #FFF;
 }
 
 .header h1 {
     font-size: 28px;
     font-weight: normal;
-    font-family: 'Arial', sans-serif;
+    font-family: Arial, sans-serif;
     color: #5E6166;
     margin: 0;
     padding: 0;
@@ -19,14 +14,17 @@
 
 .page-default {
     background-color: #FEEED5;
-    color: #63594E;
-    font-family: 'Arial Narrow', sans-serif;
+    color: #6B655C;
+    font-family: Arial, sans-serif;
     font-size: 15px;
-    letter-spacing: normal;
-    max-width: 750px;
+    max-width: 742px;
 }
 
-*::placeholder {
+.item-input::placeholder {
+    color: #929CA5;
+}
+
+.item-text::placeholder {
     color: #929CA5;
 }
 
