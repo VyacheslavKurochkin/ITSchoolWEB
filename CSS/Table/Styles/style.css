@@ -5,8 +5,7 @@
 
 .members-table {
     border-collapse: collapse;
-    border: 1px solid #EEE;
-    font-family: 'SourceSansPro', sans-serif;
+    font-family: SourceSansPro, sans-serif;
     font-size: 21px;
     font-weight: 300;
     letter-spacing: 1px;
@@ -14,18 +13,18 @@
 
 .members-table th {
     background-color: #3598DB;
-    border: 1px solid #EEE;
+    border: 1px solid #CDCDCD;
     color: #EEE;
     font-weight: normal;
     text-align: left;
     padding: 16px 10px 9px;
 }
 
-.firstname-column {
+.first-name-column {
     width: 154px;
 }
 
-.lastname-column {
+.last-name-column {
     width: 153px;
 }
 
@@ -41,18 +40,6 @@
     font-weight: bolder;
     border: 1px solid #CDCDCD;
     padding: 15px 10px 12px;
-}
-
-.members-table td:last-child {
-    border-right: 1px solid #EEE;
-}
-
-.members-table td:first-child {
-    border-left-color: #EEE;
-}
-
-.members-table tr:last-child td {
-    border-bottom-color: #EEE;
 }
 
 .members-table tr:nth-child(odd) {
