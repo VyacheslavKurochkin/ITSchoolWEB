@@ -11,7 +11,7 @@ document.addEventListener("DOMContentLoaded", function () {
     }
 
     function getKelvin(degreesCelsius) {
-        return degreesCelsius - 273.15;
+        return degreesCelsius + 273.15;
     }
 
     celsiusInput.addEventListener("keypress", function () {
@@ -22,22 +22,25 @@ document.addEventListener("DOMContentLoaded", function () {
     conversionForm.addEventListener("submit", function (e) {
         e.preventDefault();
 
-        const degreesCelsius = celsiusInput.value.trim();
         celsiusInput.classList.remove("invalid");
 
-        if (degreesCelsius.length === 0) {
-            errorMessage.innerHTML = 'Необходимо указать значение температуры';
+        const degreesCelsiusString = celsiusInput.value.trim();
+
+        if (degreesCelsiusString.length === 0) {
+            errorMessage.textContent = "Необходимо указать значение температуры";
             celsiusInput.classList.add("invalid");
 
             return;
         }
 
-        if (isNaN(Number(degreesCelsius))) {
-            errorMessage.innerHTML = 'Вводить можно только числа';
+        if (isNaN(Number(degreesCelsiusString))) {
+            errorMessage.textContent = "Вводить можно только числа";
             celsiusInput.classList.add("invalid");
 
             return;
         }
+
+        const degreesCelsius = Number(degreesCelsiusString);
 
         fahrenheitResult.value = getFahrenheit(degreesCelsius);
         kelvinResult.value = getKelvin(degreesCelsius);

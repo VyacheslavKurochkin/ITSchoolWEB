@@ -3,9 +3,9 @@
 <head>
     <meta charset="UTF-8">
     <title>Перевод температур</title>
-    <link rel="stylesheet" href="Styles/normalize.css">
-    <link rel="stylesheet" href="style.css">
-    <script defer src="script.js"></script>
+    <link rel="stylesheet" href="../Temperature/normalize.css">
+    <link rel="stylesheet" href="../Temperature/style.css">
+    <script defer src="../Temperature/script.js"></script>
 </head>
 <body>
 <div class="temperature-input-area">
@@ -18,16 +18,16 @@
             <input class="celsius-input" id="celsius" type="text" placeholder="Температура, градусы Цельсия">
             <div class="error-message"></div>
         </div>
-        <button id="convert-button">Перевести</button>
+        <button class="convert-button">Перевести</button>
     </form>
 </div>
 <div class="conversion-result">
     <div class="degree-result">
-        <span class="temperature-caption">Градусы Фаренгейта: </span><div class="fahrenheit-result-caption-splitter"></div>
+        <span class="temperature-caption">Градусы Фаренгейта: </span>
         <input class="fahrenheit-result-input" id="fahrenheit" type="text" readonly>
     </div>
     <div class="degree-result">
-        <span class="temperature-caption">Градусы Кельвина: </span><div class="kelvin-result-caption-splitter"></div>
+        <span class="temperature-caption">Градусы Кельвина: </span>
         <input class="kelvin-result-input" id="kelvin" type="text" readonly>
     </div>
 </div>
