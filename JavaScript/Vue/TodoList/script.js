@@ -27,7 +27,7 @@ Vue.createApp({})
             },
 
             deleteTodoItem(deletedItem) {
-                this.items = this.items.filter(todoItem => todoItem !== deletedItem)
+                this.items = this.items.filter(todoItem => todoItem !== deletedItem);
             }
         },
 
@@ -35,8 +35,11 @@ Vue.createApp({})
           <form @submit.prevent="addTodoItem" class="row mb-3">
             <div class="col">
               <div class="input-group has-validation">
-                <input v-on:keydown="isInvalid = false" v-model.trim="newTodoItemText"
-                       v-bind:class="{'is-invalid':isInvalid}" class="form-control" type="text">
+                <input @keydown="isInvalid = false" 
+                       v-model.trim="newTodoItemText"
+                       :class="{'is-invalid': isInvalid}" 
+                       class="form-control" 
+                       type="text">
                 <div id="validationInputNewTodoItem" class="invalid-feedback">
                   Необходимо указать текст
                 </div>
@@ -94,7 +97,9 @@ Vue.createApp({})
                 <span class="me-2">{{ item.text }}</span>
               </div>
               <div class="col-auto">
-                <button @click="$emit('delete-item')" class="btn btn-outline-danger me-2" type="button">Удалить</button>
+                <button @click="$emit('delete-item')" class="btn btn-outline-danger me-2" type="button">
+                  Удалить
+                </button>
                 <button @click="isEditing = true; isInvalid = false" class="btn btn-outline-primary" type="button">
                   Редактировать
                 </button>
@@ -102,17 +107,22 @@ Vue.createApp({})
             </div>
             <div class="row" v-else>
               <div class="col input-group has-validation">
-                <input v-on:keydown="isInvalid = false"
+                <input @keydown="isInvalid = false"
+                       @keyup.enter="save"
                        v-model.trim="editingText"
-                       v-bind:class="{'is-invalid':isInvalid}"
+                       :class="{'is-invalid': isInvalid}"
                        class="form-control" type="text">
                 <div id="validationEditTodoItem" class="invalid-feedback">
                   Необходимо указать текст
                 </div>
               </div>
               <div class="col-auto">
-                <button @click="cancel" class="btn btn-outline-warning me-2" type="button">Отменить</button>
-                <button @click="save" class="btn btn-outline-success" type="button">Сохранить</button>
+                <button @click="cancel" class="btn btn-outline-warning me-2" type="button">
+                  Отменить
+                </button>
+                <button @click="save" class="btn btn-outline-success" type="button">
+                  Сохранить
+                </button>
               </div>
             </div>
           </li>`
