@@ -22,25 +22,24 @@ document.addEventListener("DOMContentLoaded", function () {
     conversionForm.addEventListener("submit", function (e) {
         e.preventDefault();
 
-        celsiusInput.classList.remove("invalid");
-
+        errorMessage.classList.remove("invalid");
         const degreesCelsiusString = celsiusInput.value.trim();
 
         if (degreesCelsiusString.length === 0) {
             errorMessage.textContent = "Необходимо указать значение температуры";
-            celsiusInput.classList.add("invalid");
-
-            return;
-        }
-
-        if (isNaN(Number(degreesCelsiusString))) {
-            errorMessage.textContent = "Вводить можно только числа";
-            celsiusInput.classList.add("invalid");
+            errorMessage.classList.add("invalid");
 
             return;
         }
 
         const degreesCelsius = Number(degreesCelsiusString);
+
+        if (isNaN(degreesCelsius)) {
+            errorMessage.textContent = "Вводить можно только числа";
+            errorMessage.classList.add("invalid");
+
+            return;
+        }
 
         fahrenheitResult.value = getFahrenheit(degreesCelsius);
         kelvinResult.value = getKelvin(degreesCelsius);
