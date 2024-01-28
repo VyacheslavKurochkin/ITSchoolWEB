@@ -1,25 +1,25 @@
 <template>
-  <div class="container my-3" id="app">
     <h1 class="mb-3">Телефонная книга</h1>
     <form @submit.prevent="createContact" class="row mb-3">
       <h2 class="h5">Добавить контакт</h2>
       <div class="col-md-5">
         <input v-model="name"
-               v-on:keydown="isInvalidName = false"
-               v-bind:class="{'is-invalid':isInvalidName}"
-               type="text" class="form-control" placeholder="Имя">
+               @keydown="isInvalidName = false"
+               :class="{'is-invalid': isInvalidName}"
+               type="text"
+               class="form-control"
+               placeholder="Имя">
         <div id="validationEditName" class="invalid-feedback">
           Поле обязательно для заполнения
         </div>
       </div>
       <div class="col-md-3">
         <input v-model="phone"
-               v-on:keydown="isInvalidPhone = false"
-               v-bind:class="{'is-invalid':isInvalidPhone}"
-               type="text" class="form-control" placeholder="Телефон">
-        <div id="validationEditPhone" class="invalid-feedback">
-          Поле обязательно для заполнения
-        </div>
+               @keydown="isInvalidPhone = false"
+               :class="{'is-invalid': isInvalidPhone}"
+               type="text"
+               class="form-control"
+               placeholder="Телефон">
         <div id="validationEditPhone" class="invalid-feedback">
           Поле обязательно для заполнения
         </div>
@@ -28,7 +28,6 @@
         <button class="btn btn-primary">Добавить</button>
       </div>
     </form>
-
     <form @submit.prevent="loadContacts" class="mb-3">
       <h2 class="h5">Поиск контактов</h2>
       <div class="row row-cols-lg-auto g-3 align-items-center">
@@ -53,30 +52,35 @@
         <tbody class="align-middle">
         <tr v-for="(contact, index) in contacts" :key="contact.id" class="p-3">
           <td v-text="index + 1"></td>
-          <td v-text="contact.name" v-if="(index!==editingIndex)"></td>
+          <td v-text="contact.name" v-if="(index !== editingIndex)"></td>
           <td v-else class="">
             <div class="input-group has-validation">
-              <input v-on:keydown="isInvalidEditName = false"
+              <input @keydown="isInvalidEditName = false"
+                     @keyup.enter="showSaveContactConfirm(contact)"
                      v-model.trim="editingName"
-                     v-bind:class="{'is-invalid':isInvalidEditName}"
-                     class="form-control" type="text">
+                     :class="{'is-invalid': isInvalidEditName}"
+                     class="form-control"
+                     type="text">
             </div>
           </td>
           <td v-text="contact.phone" v-if="index !== editingIndex"></td>
           <td v-else class="">
             <div class="input-group has-validation">
-              <input v-on:keydown="isInvalidEditPhone = false"
+              <input @keydown="isInvalidEditPhone = false"
+                     @keyup.enter="showSaveContactConfirm(contact)"
                      v-model.trim="editingPhone"
-                     v-bind:class="{'is-invalid':isInvalidEditPhone}"
-                     class="form-control" type="text">
+                     :class="{'is-invalid': isInvalidEditPhone}"
+                     class="form-control"
+                     type="text">
             </div>
           </td>
           <td v-if="index !== editingIndex" class="">
             <div class="row justify-content-end">
               <div class="col">
-                <button @click="editingIndex = index; editingName = contact.name; editingPhone=contact.phone"
+                <button @click="editingIndex = index; editingName = contact.name; editingPhone = contact.phone"
                         class="btn btn-primary me-2 col-auto"
-                        type="button">Редактировать
+                        type="button">
+                  Редактировать
                 </button>
                 <button @click="showDeleteContactConfirm(contact)" class="btn btn-danger col-auto" type="button">
                   Удалить
@@ -90,7 +94,9 @@
                 <button @click="showSaveContactConfirm(contact)" class="btn btn-primary me-2 col-auto" type="button">
                   Сохранить
                 </button>
-                <button @click="editingIndex = -1" class="btn btn-danger col-auto" type="button">Отменить</button>
+                <button @click="editingIndex = -1" class="btn btn-danger col-auto" type="button">
+                  Отменить
+                </button>
               </div>
             </div>
           </td>
@@ -98,7 +104,6 @@
         </tbody>
       </table>
     </div>
-
     <div ref="errorModalDialog" class="modal fade" tabindex="-1" aria-hidden="true">
       <div class="modal-dialog">
         <div class="modal-content">
@@ -111,12 +116,13 @@
               </span>
           </div>
           <div class="modal-footer">
-            <button @click="" type="button" class="btn btn-secondary" data-bs-dismiss="modal">Закрыть</button>
+            <button @click="" type="button" class="btn btn-secondary" data-bs-dismiss="modal">
+              Закрыть
+            </button>
           </div>
         </div>
       </div>
     </div>
-
     <div ref="saveConfirmModalDialog" class="modal fade" tabindex="-1" aria-hidden="true">
       <div class="modal-dialog">
         <div class="modal-content">
@@ -130,14 +136,16 @@
               </span>
           </div>
           <div class="modal-footer">
-            <button @click="editingIndex = -1" type="button" class="btn btn-secondary" data-bs-dismiss="modal">Отмена
+            <button @click="editingIndex=-1" type="button" class="btn btn-secondary" data-bs-dismiss="modal">
+              Отмена
             </button>
-            <button @click="saveContact()" type="button" class="btn btn-danger">Сохранить</button>
+            <button @click="saveContact()" type="button" class="btn btn-danger">
+              Сохранить
+            </button>
           </div>
         </div>
       </div>
     </div>
-
     <div ref="deleteConfirmModalDialog" class="modal fade" tabindex="-1" aria-hidden="true">
       <div class="modal-dialog">
         <div class="modal-content">
@@ -149,20 +157,22 @@
             Удалить выбранный контакт ?
           </div>
           <div class="modal-footer">
-            <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Отмена</button>
-            <button @click="deleteContact()" type="button" class="btn btn-danger">Удалить</button>
+            <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">
+              Отмена
+            </button>
+            <button @click="deleteContact()" type="button" class="btn btn-danger">
+              Удалить
+            </button>
           </div>
         </div>
       </div>
     </div>
-  </div>
 </template>
 
 <script>
-import "bootstrap/dist/js/bootstrap.bundle";
+import * as bootstrap from "bootstrap/dist/js/bootstrap.bundle";
 import PhoneBookService from "./phoneBookService";
 
-console.log("import VUE OK");
 export default {
   name: "app",
   data() {
@@ -193,8 +203,6 @@ export default {
   },
 
   mounted() {
-    console.log("app mount OK");
-
     this.deleteConfirmDialog = new bootstrap.Modal(this.$refs.deleteConfirmModalDialog, {});
     this.saveConfirmDialog = new bootstrap.Modal(this.$refs.saveConfirmModalDialog, {});
     this.errorDialog = new bootstrap.Modal(this.$refs.errorModalDialog, {});
@@ -259,10 +267,14 @@ export default {
 
     showSaveContactConfirm(contact) {
       if (this.editingName.length === 0) {
+        this.showErrorDialog("Поле 'Имя' обязательно для заполнения !");
+
         this.isInvalidEditName = true;
       }
 
       if (this.editingPhone.length === 0) {
+        this.showErrorDialog("Поле 'Телефон' обязательно для заполнения !");
+
         this.isInvalidEditPhone = true;
       }
 

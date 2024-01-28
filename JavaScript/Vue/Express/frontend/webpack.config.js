@@ -3,6 +3,7 @@ const path = require("path");
 const {CleanWebpackPlugin} = require("clean-webpack-plugin");
 const MiniCssExtractPlugin = require("mini-css-extract-plugin");
 const { VueLoaderPlugin } = require("vue-loader");
+const HtmlWebpackPlugin = require("html-webpack-plugin");
 const webpack = require("webpack");
 
 module.exports = {
@@ -44,6 +45,9 @@ module.exports = {
         new VueLoaderPlugin(),
         new webpack.DefinePlugin({
             __VUE_PROD_DEVTOOLS__: JSON.stringify(false)
+        }),
+        new HtmlWebpackPlugin({
+            template: "index.html"
         })
     ]
 };
