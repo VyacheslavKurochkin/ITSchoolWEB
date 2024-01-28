@@ -1,0 +1,96 @@
+.todo-list-block {
+    vertical-align: top;
+    max-width: 800px;
+    margin: 0 auto;
+}
+
+.add-todo-form > * {
+    display: inline-block;
+    vertical-align: top;
+    border: none;
+    box-sizing: border-box;
+}
+
+.add-todo-block {
+    width: 80%
+}
+
+.add-todo-form input {
+    height: 20px;
+    width: 100%;
+    min-width: 200px;
+}
+
+.add-todo-button-block {
+    width: 120px;
+    float: right;
+}
+
+.add-todo-form button {
+    height: 25px;
+    cursor: pointer;
+    font-weight: bold;
+    background-color: #8FBC8FFF;
+    margin-left: 14px;
+}
+
+.todo-item-text {
+    display: inline-block;
+    vertical-align: top;
+    overflow: hidden;
+    white-space: nowrap;
+    text-overflow: ellipsis;
+    width: 70%;
+}
+
+.todo-item {
+    margin: 8px;
+    padding: 5px 20px;
+}
+
+.todo-item-controls {
+    float: right;
+    display: inline-block;
+    vertical-align: top;
+}
+
+.edit-todo-item-text {
+    display: inline-block;
+    vertical-align: top;
+    width: 70%;
+}
+
+.edit-todo-item-text-field {
+    width: 100%;
+}
+
+.todo-list button {
+    margin-left: 5px;
+    height: 20px;
+    cursor: pointer;
+    border: none;
+    font-weight: bold;
+    display: inline-block;
+    vertical-align: top;
+}
+
+.error-message {
+    color: #f00;
+    display: none;
+}
+
+.invalid {
+    border-color: #f00;
+}
+
+.invalid + .error-message {
+    display: block;
+}
+
+.delete-button, .cancel-button {
+    background-color: #F87D6D;
+}
+
+.edit-button, .save-button {
+    background-color: #F6FE58;
+}
