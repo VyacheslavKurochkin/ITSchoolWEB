@@ -18,6 +18,14 @@ module.exports = {
         path: path.resolve(__dirname, "../public")
     },
 
+    devServer: {
+        hot: true,
+        open: true,
+        proxy: {
+            "/api": "http://localhost:3000"
+        }
+    },
+
     module:{
         rules:[
             {

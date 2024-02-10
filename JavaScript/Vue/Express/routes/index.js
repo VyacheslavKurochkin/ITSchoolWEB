@@ -1,11 +1,6 @@
 const express = require('express');
 const router = express.Router();
 
-/* GET home page. */
-router.get('/', function (req, res) {
-    res.render('index', {title: 'Телефонная книга'});
-});
-
 let contacts = [];
 let currentContactId = 1;
 
@@ -58,7 +53,7 @@ router.post("/api/contacts", function (req, res) {
         return;
     }
 
-    const updatingContactId = Number((req.query.id || ""));
+    const updatingContactId = Number((req.query.id || 0));
     const upperCasePhone = req.body.phone.toUpperCase();
 
     if (contacts.some(contact => contact.phone.toUpperCase() === upperCasePhone && contact.id !== updatingContactId)) {
