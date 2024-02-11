@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <title>Задача Todo list</title>
+    <link rel="stylesheet" href="normalize.css">
+    <link rel="stylesheet" href="style.css">
+    <script defer src="script.js"></script>
+</head>
+<body>
+<div class="todo-list-block">
+    <h1>Список дел</h1>
+    <form class="add-todo-form" id="add-todo-form">
+        <div class="add-todo-block">
+            <input class="new-todo-input" id="new-todo-text-field" type="text">
+            <div class="error-message">Необходимо указать текст</div>
+        </div>
+        <div class="add-todo-button-block">
+            <button id="add-button">Добавить</button>
+        </div>
+    </form>
+    <ul class="todo-list" id="todo-list"></ul>
+</div>
+</body>
+</html>

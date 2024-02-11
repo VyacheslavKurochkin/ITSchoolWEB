@@ -21,8 +21,8 @@ document.addEventListener("DOMContentLoaded", function () {
         function setViewMode() {
             newTodo.innerHTML = `<div class="todo-item-text"></div>
                                  <div class="todo-item-controls">
-                                        <button class="delete-button" type="button">Удалить</button>
-                                        <button class="edit-button" type="button">Редактировать</button>
+                                    <button class="delete-button" type="button">Удалить</button>
+                                    <button class="edit-button" type="button">Редактировать</button>
                                  </div>`;
 
             newTodo.querySelector(".todo-item-text").textContent = newTodoText;
