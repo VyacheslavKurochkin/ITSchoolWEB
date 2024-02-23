@@ -1,10 +1,10 @@
-const express = require('express');
+const express = require("express");
 const router = express.Router();
 
 let contacts = [];
 let currentContactId = 1;
 
-router.get('/api/contacts', function (req, res) {
+router.get("/api/contacts", function (req, res) {
     const term = (req.query.term || "").toUpperCase();
 
     const result = term.length === 0
@@ -53,7 +53,7 @@ router.post("/api/contacts", function (req, res) {
         return;
     }
 
-    const updatingContactId = Number((req.query.id || 0));
+    const updatingContactId = Number(req.query.id || 0);
     const upperCasePhone = req.body.phone.toUpperCase();
 
     if (contacts.some(contact => contact.phone.toUpperCase() === upperCasePhone && contact.id !== updatingContactId)) {
@@ -65,12 +65,21 @@ router.post("/api/contacts", function (req, res) {
         return;
     }
 
+    if (updatingContactId>0 && !contacts.some(contact => contact.id === updatingContactId)){
+        res.send({
+            success: false,
+            message: `По id '${req.body.id}' контакт не найден`
+        });
+
+        return;
+    }
+
     if (!updatingContactId) {
         const newContact = {
             id: currentContactId,
             name: req.body.name,
             phone: req.body.phone
-        }
+        };
 
         contacts.push(newContact);
         currentContactId++;
@@ -83,10 +92,10 @@ router.post("/api/contacts", function (req, res) {
         return;
     }
 
-    const updatingContactIndex = contacts.findIndex(contact => contact.id === updatingContactId);
+    const updatingContact = contacts.find(contact => contact.id === updatingContactId);
 
-    contacts[updatingContactIndex].name = req.body.name;
-    contacts[updatingContactIndex].phone = req.body.phone;
+    updatingContact.name = req.body.name;
+    updatingContact.phone = req.body.phone;
 
     res.send({
         success: true,

@@ -46,30 +46,40 @@
             <table class="table table-striped text-center">
                 <thead>
                 <tr class="align-middle">
+                    <th class="col-1">
+                        <input :checked="contacts.length > 0 && markedContactsIndexes.length === contacts.length"
+                               @click="markAllContacts"
+                               class="form-check-input"
+                               type="checkbox">
+                    </th>
                     <th class="col-1">№</th>
                     <th class="col-4">Имя</th>
-                    <th class="col-4">Телефон</th>
+                    <th class="col-3">Телефон</th>
                     <th></th>
                 </tr>
                 </thead>
                 <tbody class="align-middle">
                 <tr v-for="(contact, index) in contacts" :key="contact.id" class="p-3">
+                    <td><input :checked="markedContactsIndexes.includes(index)"
+                               @click="markContact(index)"
+                               class="form-check-input"
+                               type="checkbox">
+                    </td>
                     <td v-text="index + 1"></td>
-                    <template v-if="index !== editingIndex">
+                    <template v-if="!editingContactsIndexes.includes(index)">
                         <td v-text="contact.name"></td>
                         <td v-text="contact.phone"></td>
                         <td>
                             <div class="row justify-content-end">
-                                <div class="col">
-                                    <button
-                                        @click="initEditingContact(index)"
-                                        class="btn btn-primary me-2"
-                                        type="button">
+                                <div class="col g-2 g-lg-0">
+                                    <button @click="initEditingContact(index)"
+                                            class="btn btn-primary me-2"
+                                            type="button">
                                         Редактировать
                                     </button>
                                 </div>
-                                <div class="col g-2">
-                                    <button @click="showDeleteContactConfirm(contact)"
+                                <div class="col g-2 g-lg-0">
+                                    <button @click="showDeleteContactConfirm(index)"
                                             class="btn btn-danger"
                                             type="button">
                                         Удалить
@@ -81,33 +91,35 @@
                     <template v-else>
                         <td>
                             <div class="input-group has-validation">
-                                <input @keydown="isInvalidEditName = false"
-                                       @keyup.enter="showSaveContactConfirm(contact)"
-                                       v-model.trim="editingName"
-                                       :class="{'is-invalid': isInvalidEditName}"
+                                <input @keydown="contact.isInvalidEditName = false"
+                                       @keyup.enter="saveContact(index)"
+                                       v-model.trim="contact.editingName"
+                                       :class="{'is-invalid': contact.isInvalidEditName}"
                                        class="form-control"
                                        type="text">
                             </div>
                         </td>
                         <td>
                             <div class="input-group has-validation">
-                                <input @keydown="isInvalidEditPhone = false"
-                                       @keyup.enter="showSaveContactConfirm(contact)"
-                                       v-model.trim="editingPhone"
-                                       :class="{'is-invalid': isInvalidEditPhone}"
+                                <input @keydown="contact.isInvalidEditPhone = false"
+                                       @keyup.enter="saveContact(index)"
+                                       v-model.trim="contact.editingPhone"
+                                       :class="{'is-invalid': contact.isInvalidEditPhone}"
                                        class="form-control"
                                        type="text">
                             </div>
                         </td>
                         <td>
                             <div class="row justify-content-end">
-                                <div class="col">
-                                    <button @click="showSaveContactConfirm(contact)"
+                                <div class="col g-2 g-lg-0">
+                                    <button @click="saveContact(index)"
                                             class="btn btn-primary me-2"
                                             type="button">
                                         Сохранить
                                     </button>
-                                    <button @click="editingIndex = -1"
+                                </div>
+                                <div class="col g-2 g-lg-0">
+                                    <button @click="denyEditingContact(index)"
                                             class="btn btn-danger"
                                             type="button">
                                         Отменить
@@ -130,36 +142,11 @@
                     <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                 </div>
                 <div class="modal-body">
-                    <span v-text="errorDescription" class="h4">
-                    </span>
+                    <span v-text="errorDescription"></span>
                 </div>
                 <div class="modal-footer">
                     <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">
                         Закрыть
-                    </button>
-                </div>
-            </div>
-        </div>
-    </div>
-
-    <div ref="saveConfirmModalDialog" class="modal fade" tabindex="-1" aria-hidden="true">
-        <div class="modal-dialog">
-            <div class="modal-content">
-                <div class="modal-header">
-                    <h5 class="modal-title">Подтверждение сохранения изменений</h5>
-                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-                </div>
-                <div class="modal-body">
-                    <span class="h4">
-                    Сохранить изменения контакта ?
-                    </span>
-                </div>
-                <div class="modal-footer">
-                    <button @click="editingIndex=-1" type="button" class="btn btn-secondary" data-bs-dismiss="modal">
-                        Отмена
-                    </button>
-                    <button @click="saveContact" type="button" class="btn btn-danger">
-                        Сохранить
                     </button>
                 </div>
             </div>
@@ -174,13 +161,13 @@
                     <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                 </div>
                 <div class="modal-body">
-                    Удалить выбранный контакт ?
+                    <span>Удалить выбранные контакты?</span>
                 </div>
                 <div class="modal-footer">
                     <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">
                         Отмена
                     </button>
-                    <button @click="deleteContact()" type="button" class="btn btn-danger">
+                    <button @click="deleteContacts" type="button" class="btn btn-danger">
                         Удалить
                     </button>
                 </div>
@@ -195,25 +182,24 @@ import PhoneBookService from "./phoneBookService";
 
 export default {
     name: "app",
+
     data() {
         return {
             contacts: [],
+            service: new PhoneBookService(),
+            editingContactsIndexes: [],
+            markedContactsIndexes: [],
+
             term: "",
             name: "",
             phone: "",
-            service: new PhoneBookService(),
-            deleteConfirmDialog: null,
-            saveConfirmDialog: null,
-            errorDialog: null,
-            selectedContact: null,
+
             isInvalidName: false,
             isInvalidPhone: false,
-            editingIndex: -1,
-            editingName: "",
-            isInvalidEditName: false,
-            editingPhone: "",
-            isInvalidEditPhone: false,
-            errorDescription: ""
+            selectedContactIndex: -1,
+            errorDescription: "",
+            deleteConfirmDialog: null,
+            errorDialog: null
         };
     },
 
@@ -223,7 +209,6 @@ export default {
 
     mounted() {
         this.deleteConfirmDialog = new bootstrap.Modal(this.$refs.deleteConfirmModalDialog, {});
-        this.saveConfirmDialog = new bootstrap.Modal(this.$refs.saveConfirmModalDialog, {});
         this.errorDialog = new bootstrap.Modal(this.$refs.errorModalDialog, {});
     },
 
@@ -244,7 +229,7 @@ export default {
             const contact = {
                 name: this.name,
                 phone: this.phone
-            }
+            };
 
             this.service.createContact(contact).then(response => {
                 if (!response.success) {
@@ -260,11 +245,27 @@ export default {
             }).catch(() => this.showErrorDialog("Новый контакт не добавлен"));
         },
 
-        saveContact() {
+        saveContact(editingIndex) {
+            if (this.contacts[editingIndex].editingName.length === 0) {
+                this.showErrorDialog("Поле 'Имя' обязательно для заполнения!");
+
+                this.contacts[editingIndex].isInvalidEditName = true;
+            }
+
+            if (this.contacts[editingIndex].editingPhone.length === 0) {
+                this.showErrorDialog("Поле 'Телефон' обязательно для заполнения!");
+
+                this.contacts[editingIndex].isInvalidEditPhone = true;
+            }
+
+            if (this.contacts[editingIndex].isInvalidEditPhone || this.contacts[editingIndex].isInvalidEditName) {
+                return;
+            }
+
             const contact = {
-                id: this.selectedContact.id,
-                name: this.editingName,
-                phone: this.editingPhone
+                id: this.contacts[editingIndex].id,
+                name: this.contacts[editingIndex].editingName,
+                phone: this.contacts[editingIndex].editingPhone
             }
 
             this.service.updateContact(contact).then(response => {
@@ -274,39 +275,15 @@ export default {
                     return;
                 }
 
-                this.saveConfirmDialog.hide();
-
-                this.selectedContact.name = this.editingName;
-                this.selectedContact.phone = this.editingPhone;
+                this.contacts[editingIndex].name = this.contacts[editingIndex].editingName;
+                this.contacts[editingIndex].phone = this.contacts[editingIndex].editingPhone;
             }).catch(() => this.showErrorDialog("Контакт не изменен"))
-                .finally(() => this.saveConfirmDialog.hide());
 
-            this.editingIndex = -1;
+            this.editingContactsIndexes = this.editingContactsIndexes.filter(index => index !== editingIndex);
         },
 
-        showSaveContactConfirm(contact) {
-            if (this.editingName.length === 0) {
-                this.showErrorDialog("Поле 'Имя' обязательно для заполнения!");
-
-                this.isInvalidEditName = true;
-            }
-
-            if (this.editingPhone.length === 0) {
-                this.showErrorDialog("Поле 'Телефон' обязательно для заполнения!");
-
-                this.isInvalidEditPhone = true;
-            }
-
-            if (this.isInvalidEditPhone || this.isInvalidEditName) {
-                return;
-            }
-
-            this.selectedContact = contact;
-            this.saveConfirmDialog.show();
-        },
-
-        showDeleteContactConfirm(contact) {
-            this.selectedContact = contact;
+        showDeleteContactConfirm(selectedIndex) {
+            this.selectedContactIndex = selectedIndex;
             this.deleteConfirmDialog.show();
         },
 
@@ -315,15 +292,66 @@ export default {
             this.errorDialog.show();
         },
 
-        initEditingContact(index){
-            this.editingIndex = index;
-            this.editingName = this.contacts[index].name;
-            this.editingPhone = this.contacts[index].phone;
+        markContact(markingIndex) {
+            if (this.markedContactsIndexes.includes(markingIndex)) {
+                this.markedContactsIndexes = this.markedContactsIndexes.filter(index => index !== markingIndex)
+
+                return;
+            }
+
+            this.markedContactsIndexes.push(markingIndex);
         },
 
-        deleteContact() {
+        markAllContacts() {
+            if (!this.contacts.length) {
+                return;
+            }
+
+            if (this.markedContactsIndexes.length === this.contacts.length) {
+                this.markedContactsIndexes = [];
+
+                return;
+            }
+
+            this.markedContactsIndexes = [];
+
+            this.contacts.forEach((contact, index) => {
+                this.markedContactsIndexes.push(index);
+            });
+        },
+
+        initEditingContact(editingIndex) {
+            this.contacts[editingIndex].isInvalidEditName = false;
+            this.contacts[editingIndex].isInvalidEditPhone = false;
+            this.contacts[editingIndex].editingName = this.contacts[editingIndex].name;
+            this.contacts[editingIndex].editingPhone = this.contacts[editingIndex].phone;
+
+            this.editingContactsIndexes.push(editingIndex);
+        },
+
+        denyEditingContact(editingIndex) {
+            this.contacts[editingIndex].isInvalidEditName = false;
+            this.contacts[editingIndex].isInvalidEditPhone = false;
+
+            this.editingContactsIndexes = this.editingContactsIndexes.filter(index => index !== editingIndex);
+        },
+
+        deleteContacts() {
+            if (!this.markedContactsIndexes.includes(this.selectedContactIndex)) {
+                this.markedContactsIndexes.push(this.selectedContactIndex);
+            }
+
+            this.markedContactsIndexes.forEach(index => {
+                this.deleteContact(this.contacts[index]);
+            });
+
+            this.loadContacts();
+        },
+
+        async deleteContact(contact) {
             this.deleteConfirmDialog.hide();
-            this.service.deleteContact(this.selectedContact.id).then(response => {
+
+            await this.service.deleteContact(contact.id).then(response => {
                 if (!response.success) {
                     this.showErrorDialog(response.message);
 
@@ -337,6 +365,8 @@ export default {
         loadContacts() {
             this.service.getContacts(this.term).then(contacts => {
                 this.contacts = contacts;
+                this.editingContactsIndexes = [];
+                this.markedContactsIndexes = [];
             }).catch(() => this.showErrorDialog("Список контактов не загружен"));
         }
     }
